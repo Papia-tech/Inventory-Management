@@ -21,7 +21,6 @@ A modernized, monochromatic logistics and inventory management system powered by
 
 3. **Access the Application**
    Once the server starts running, open your browser and navigate directly to:
-   - [http://localhost:3000](http://localhost:3000)
 
 ## Default Admin Credentials
 You can use the following credentials to securely bypass the Enterprise Login:
