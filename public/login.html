@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>IMS | Secure Enterprise Login</title>
+    <style>
+        :root {
+            --frame-bg: #1A1A1A;
+            --ims-primary: #333333;
+            --ims-secondary: #666666;
+            --ims-accent: #999999;
+            --bg-smoke: #F5F5F5;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #E0E0E0 0%, #BDBDBD 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .outer-frame {
+            width: 1050px;
+            height: 630px;
+            background-color: var(--frame-bg);
+            padding: 35px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .main-container {
+            width: 100%;
+            height: 100%;
+            background-color: var(--white);
+            border-radius: 8px;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .accent-top {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(225deg, #EEEEEE 50%, transparent 50%);
+            z-index: 0;
+        }
+
+        .accent-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(45deg, #EEEEEE 50%, transparent 50%);
+            z-index: 0;
+        }
+
+        .left-side {
+            flex: 0 0 550px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            z-index: 1;
+        }
+
+        .logo-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: repeating-linear-gradient(90deg, #333 3px, transparent 6px);
+            margin-bottom: 20px;
+        }
+
+        .logo-text {
+            font-size: 50px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #000000 0%, #666666 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            color: #444;
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .right-side {
+            flex: 1;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .right-side::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 20%;
+            height: 60%;
+            width: 2px;
+            background-color: var(--frame-bg);
+            opacity: 0.7;
+            border-radius: 50px;
+        }
+
+        .welcome-text {
+            font-size: 48px;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            color: var(--frame-bg);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .lock-icon-box {
+            background-color: var(--frame-bg);
+            color: #E0E0E0;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 25px;
+        }
+
+        .lock-icon-box i {
+            font-size: 25px;
+        }
+
+        .form-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            background-color: var(--bg-smoke);
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #000;
+            background-color: var(--white);
+        }
+
+        .form-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .form-meta a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 4px;
+            background: linear-gradient(to right, #000000 0%, #444444 50%, #000000 100%);
+            background-size: 200% auto;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: letter-spacing 0.3s ease, background-position 0.3s ease;
+            background-position: left center;
+        }
+
+        .login-btn:hover {
+            letter-spacing: 2.8px;
+            background-position: right center;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .status-link {
+            color: #333;
+            font-weight: 700;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .outer-frame {
+                width: 100%;
+                height: auto;
+                padding: 20px;
+                background-color: transparent;
+                box-shadow: none;
+            }
+
+            .main-container {
+                flex-direction: column;
+            }
+
+            .left-side,
+            .right-side {
+                flex: 1 1 100%;
+                padding: 30px 10px;
+            }
+
+            .right-side::before {
+                display: none;
+            }
+
+            .welcome-text {
+                display: none;
+            }
+
+            .logo-text {
+                font-size: 28px;
+            }
+
+            .lock-icon-box {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .logo-circle {
+                width: 90px;
+                height: 90px;
+            }
+
+            input {
+                padding: 12px;
+                font-size: 13px;
+            }
+
+            .login-btn {
+                padding: 14px;
+                font-size: 15px;
+            }
+
+            .description {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="outer-frame">
+        <div class="main-container">
+            <div class="accent-top"></div>
+            <div class="accent-bottom"></div>
+
+            <div class="left-side">
+                <div class="logo-circle"></div>
+                <div class="logo-text">INVENTO</div>
+                <p class="description">
+                    Professional Inventory & Asset Tracking System.
+                    Authorized access to logistics database only.
+                </p>
+            </div>
+
+            <div class="right-side">
+                <h1 class="welcome-text">Welcome</h1>
+
+                <div class="lock-icon-box">
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <div class="form-container">
+                    <form id="imsLogin">
+                        <input type="text" placeholder="Access ID" required>
+                        <input type="password" placeholder="System Password" required>
+
+                        <div class="form-meta">
+                            <label><input type="checkbox" style="width:auto; margin-bottom:0; margin-right:5px;"> Keep
+                                Session</label>
+                            <a href="#">Recovery Portal</a>
+                        </div>
+
+                        <button type="submit" class="login-btn">Authenticate</button>
+                    </form>
+
+                    <div class="footer">
+                        Secure Terminal 042-X
+                        <a href="#" class="status-link">System Status</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('imsLogin').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.querySelector('.login-btn');
+            const originalText = btn.innerText;
+            btn.innerText = "VERIFYING...";
+            
+            const inputs = e.target.querySelectorAll('input');
+            const usernameInput = inputs[0].value;
+            const passwordInput = inputs[1].value;
+
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: usernameInput, password: passwordInput })
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    localStorage.setItem('ims_token', data.token);
+                    btn.innerText = "AUTHORIZED";
+                    window.location.href = data.redirect;
+                } else {
+                    alert(data.message || "Access Denied.");
+                    btn.innerText = originalText;
+                }
+            } catch(err) {
+                alert("Server unavailable.");
+                btn.innerText = originalText;
+            }
+        });
+    </script>
+</body>
+
+</html>

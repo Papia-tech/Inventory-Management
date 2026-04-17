@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <title>INVENTO | Next-Gen Inventory Management</title>
+    <style>
+        :root {
+            /* Extracted Monochromatic Palette from login.html */
+            --frame-bg: #1A1A1A;
+            --ims-primary: #333333;
+            --ims-secondary: #666666;
+            --ims-accent: #999999;
+            --bg-smoke: #F5F5F5;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            /* Reused the gradient body from login.html */
+            background: radial-gradient(circle at center, #E0E0E0 0%, #BDBDBD 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Nav Bar styling */
+        .landing-nav {
+            width: 100%;
+            padding: 25px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeInDown 0.8s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Branding Reused */
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: repeating-linear-gradient(90deg, #333 3px, transparent 6px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #000000 0%, #666666 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-btn-secondary {
+            text-decoration: none;
+            color: var(--white);
+            background-color: var(--ims-primary);
+            font-weight: 700;
+            font-size: 15px;
+            padding: 12px 24px;
+            border: 2px solid var(--ims-primary);
+            border-radius: 40px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn-secondary:hover {
+            background-color: transparent;
+            color: var(--ims-primary);
+        }
+
+        /* Main Hero Section */
+        .hero-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 80px;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+            gap: 60px;
+            animation: fadeIn 1s ease 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 650px;
+        }
+
+        .hero-title {
+            font-family: 'Georgia', serif;
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--frame-bg);
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title span {
+            font-style: italic;
+            color: var(--ims-secondary);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 45px;
+            max-width: 90%;
+            font-weight: 500;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Buttons replicating .login-btn from login.html */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 36px;
+            border: none;
+            border-radius: 4px;
+            background: linear-gradient(to right, #000000 0%, #444444 50%, #000000 100%);
+            background-size: 200% auto;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: letter-spacing 0.3s ease, background-position 0.3s ease;
+            background-position: left center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            letter-spacing: 2.8px;
+            background-position: right center;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            padding: 18px 36px;
+            border: 2px solid var(--ims-primary);
+            border-radius: 4px;
+            color: var(--ims-primary);
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--ims-primary);
+            color: var(--white);
+        }
+
+        /* Badges/Trust */
+        .trust-badges {
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            color: var(--ims-secondary);
+            font-weight: 600;
+        }
+
+        .trust-badges i {
+            color: var(--ims-primary);
+            font-size: 20px;
+        }
+
+        /* Visual Right Side */
+        .hero-visual {
+            flex: 1.2;
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        /* Accents mirroring login.html */
+        .visual-frame {
+            position: relative;
+            width: 100%;
+            max-width: 750px;
+            /* Container identical to .outer-frame to give it structure */
+            background-color: var(--frame-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.5s;
+        }
+
+        .visual-frame:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .visual-inner {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            mix-blend-mode: multiply;
+        }
+
+        .accent-corner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(225deg, #EEEEEE 50%, transparent 50%);
+            z-index: 0;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 1024px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 30px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .visual-frame {
+                transform: none;
+            }
+
+            .visual-frame:hover {
+                transform: none;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-outline {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .visual-inner {
+                height: 300px;
+            }
+
+            .landing-nav {
+                padding: 20px;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header / Navigation -->
+    <nav class="landing-nav">
+        <div class="logo-container">
+            <div class="logo-circle"></div>
+            <div class="logo-text">INVENTO</div>
+        </div>
+        <div class="nav-links">
+            <a href="login.html" class="nav-btn-secondary">Client Login</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Intelligent Routing & <br>
+                <span>Warehouse Control.</span>
+            </h1>
+            <p class="hero-subtitle">
+                A seamless, unified platform to orchestrate your logistics, monitor real-time stock levels, and
+                completely modernize your enterprise supply chain operations.
+            </p>
+
+            <div class="hero-actions">
+                <a href="dashboard.html" class="btn-primary">
+                    Launch Dashboard <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="login.html" class="btn-outline">
+                    Secure Access
+                </a>
+            </div>
+
+            <div class="trust-badges">
+                <i class="fas fa-shield-alt"></i>
+                <span>Enterprise-Grade Security Protocol Enabled</span>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="visual-frame">
+                <div class="visual-inner">
+                    <div class="accent-corner"></div>
+                    <!-- The generated warehouse hero illustration -->
+                    <img src="hero.png" alt="Warehouse Isometric Hero" class="hero-img">
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+
+</html>
