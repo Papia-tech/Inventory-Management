@@ -1,33 +1,57 @@
 # Full-Stack Inventory Management System
 
-A modernized, monochromatic logistics and inventory management system powered by a fully fledged REST API backend.
+A modernized, monochromatic logistics and inventory management system powered by a fully fledged REST API backend. This project showcases a clean, professional approach to supply chain visualization and data persistence.
 
-## Prerequisites
-- [Node.js](https://nodejs.org/) installed on your machine.
+## 🔗 Live Project
+**[View Live Demo]([https://papia-inventory-system.vercel.app](https://inventory-management-g6y4.onrender.com))**
 
-## Setup & Initialization
+## 🖼️ System Preview
+![Dashboard Preview](preview.png)
+*Figure: The minimalist dashboard showing real-time stock analytics and inventory controls.*
 
-1. **Install Dependencies**
-   Navigate to the project root directory where `package.json` is located and install the required modules:
-   ```bash
-   npm install
-   ```
+## 🚀 Key Features
+* **Monochromatic UI:** A high-contrast, professional design optimized for focus and reduced eye strain.
+* **RESTful API:** Robust backend handling GET, POST, and UPDATE requests for inventory synchronization.
+* **Automated DB Initialization:** Powered by SQLite; the system automatically builds the schema and seeds initial data on the first run.
+* **Enterprise Authentication:** A secure login gate for system administrators.
 
-2. **Start the Express Server**
-   Start the backend application which will automatically build out your SQLite database tables and seed them with initial stock entries:
-   ```bash
-   node server/server.js
-   ```
+## 🛠️ Tech Stack
+* **Frontend:** HTML5, CSS3 (Custom Logistics Styling), Client-side JavaScript.
+* **Backend:** Node.js, Express.js.
+* **Database:** SQLite3 (Local file-based persistence).
 
-3. **Access the Application**
-   Once the server starts running, open your browser and navigate directly to:
+## 🔐 Credentials & Security
 
-## Default Admin Credentials
-You can use the following credentials to securely bypass the Enterprise Login:
-- **Access ID / Username:** `admin`
-- **System Password:** `admin123`
+To access the administrative dashboard, use the following default credentials:
 
-## Project Structure
-- `/public`: Contains all static assets (HTML, customized monochromatic CSS, generated logistics illustrations, client-side JS).
-- `/server/server.js`: The Express.js routing controller and static file server.
-- `/server/database.js`: The SQLite driver and table definitions.
+* **Username:** `admin`
+* **Password:** `admin123`
+
+> [!WARNING]  
+> **Change your password immediately** after the first login to ensure the security of your inventory data.
+
+## ⚙️ Setup & Initialization
+
+1.  **Install Dependencies** Navigate to the project root and install the required modules:
+    ```bash
+    npm install
+    ```
+
+2.  **Run the Server** Start the Node.js backend:
+    ```bash
+    node server.js
+    ```
+
+3.  **Access the App** Open your browser and navigate to:
+    ```
+    http://localhost:3000
+    ```
+
+## 📂 Project Structure
+* `/public`: Frontend assets (HTML, CSS, JS).
+* `/data`: SQLite database storage.
+* `server.js`: Express.js API and server logic.
+* `database.js`: Database schema and initialization script.
+
+---
+*Developed by Papia Karmakar — B.Tech CSE, UEM Kolkata*
